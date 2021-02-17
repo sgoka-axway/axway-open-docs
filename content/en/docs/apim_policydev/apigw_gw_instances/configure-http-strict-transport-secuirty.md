@@ -21,8 +21,8 @@ Configure the following settings:
 * **Enable HSTS**: Specifies whether HSTS processing is enabled for the profile. Enabled by default.
 * **HSTS Parameters:**
 
-    * max-age(seconds): Specifies the time, in seconds, that the browser should remember that a site is only to be accessed using HTTPS.
-    * includeSubDomains: Specifies this rule applies to all of the site's subdomains as well. Enabled by default.
+  * max-age(seconds): Specifies the time, in seconds, that the browser should remember that a site is only to be accessed using HTTPS.
+  * includeSubDomains: Specifies this rule applies to all of the site's subdomains as well. Enabled by default.
 
 ## Enable HSTS Profile
 
@@ -35,12 +35,12 @@ Create a new project “From existing configuration” and browse the directory 
    Go to the Advanced tab.
 3. Under HSTS Settings, browse to the HSTS Profile you want to use to protect all the services offered by this interface . For example:
 
-![](/Images/docbook/images/general/hsts5.png)
+![To enable HSTS profile](/Images/docbook/images/general/hsts5.png)
 
 **NOTE:** To apply configuration changes done in policy studio for nodemanager you need to copy the project folder config files to the apigateway/conf files.
 
 For API Manager, Client Application Registry, Analytics , we need to add the HSTS profile in the same way as node manager port but under the Gateway ports they are on (for example, API Gateway > API Portal > Ports).
 
-![](/Images/docbook/images/general/hsts2.png)
+![To enable HSTS profile for API Gateway ports](/Images/docbook/images/general/hsts2.png)
 
 Deploy the updated configuration to API Gateway after changing any HSTS profile settings. When you open the UI in a browser all the responses from the interface contains “HSTS header” with max-age and includeSubDomains.
