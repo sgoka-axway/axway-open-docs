@@ -20,9 +20,8 @@ Configure the following settings:
 * **Name**: Unique name of the HSTS profile. Defaults to HTTP Strict Transport Security.
 * **Enable HSTS**: Specifies whether HSTS processing is enabled for the profile. Enabled by default.
 * **HSTS Parameters:**
-
-  * max-age(seconds): Specifies the time, in seconds, that the browser should remember that a site is only to be accessed using HTTPS.
-  * includeSubDomains: Specifies this rule applies to all of the site's subdomains as well. Enabled by default.
+    * max-age(seconds): Specifies the time, in seconds, that the browser should remember that a site is only to be accessed using HTTPS.
+    * includeSubDomains: Specifies this rule applies to all of the site's     subdomains as well. Enabled by default.
 
 ## Enable HSTS Profile
 
