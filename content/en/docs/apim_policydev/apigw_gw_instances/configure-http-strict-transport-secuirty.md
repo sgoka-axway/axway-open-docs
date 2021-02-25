@@ -4,7 +4,7 @@
 }
 HSTS-enabled web sites declare themselves accessible only via secure connections and for users to be able to direct their user agents to interact with given sites only over secure connections. This HSTS policy is declared by websites via the Strict-Transport-Security HTTP response header field.
 
-When HSTS is configured, the webserver sends the special HTTP response header called Strict-Transport-Security" to the client. This header includes the max-age attribute, which specifies a duration of time in seconds. Optionally, the directive 'includeSubdomains' can be included to indicate that this policy should apply to all sub-domains as well. After a browser receives this header over a secure HTTPS connection (without any certificate errors), the browser makes new requests to the application over secure HTTPS connections for the duration of time specified in the header. Any links to the server over insecure HTTP connections are automatically rewritten to HTTPS before the request is made. HSTS prevents a user from ignoring certificate errors, as it prevents the user from connecting to a website with an invalid certificate.
+When HSTS is configured, the webserver sends the special HTTP response header called "Strict-Transport-Security" to the client. This header includes the max-age attribute, which specifies a duration of time in seconds. Optionally, the directive 'includeSubdomains' can be included to indicate that this policy should apply to all sub-domains as well. After a browser receives this header over a secure HTTPS connection (without any certificate errors), the browser makes new requests to the application over secure HTTPS connections for the duration of time specified in the header. Any links to the server over insecure HTTP connections are automatically rewritten to HTTPS before the request is made. HSTS prevents a user from ignoring certificate errors, as it prevents the user from connecting to a website with an invalid certificate.
 
 Applications that do not utilize the "HTTP Strict-Transport-Security" policy are more susceptible to man-in-the-middle attacks via SSL stripping, which occurs when an attacker transparently downgrades a victim's communication with the server from HTTPS to HTTP. Once this is accomplished, the attacker gains the ability to view and potentially modify the victim's traffic, exposing sensitive information, and gaining access to unauthorized functionality.
 
@@ -46,8 +46,8 @@ For API Manager, Client Application Registry, Analytics , we need to add the HST
 
 ![To enable HSTS profile for API Gateway ports](/Images/docbook/images/general/hsts2.png)
 
-Deploy the updated configuration to API Gateway after changing any HSTS profile settings. When you open the UI in a browser all the responses from the interface contains “HSTS header” with max-age and includeSubDomains.
+Deploy the updated configuration to API Gateway after changing any HSTS profile settings. When you open the UI in a browser all the responses from the interface contains “Strict-Transport-Security" header with max-age and includeSubDomains.
 
 **NOTE:** When HSTS is enabled, it is enabled for the domain irrespective of ports on listeners being configured. Any non-SSL ports that exist in the configuration (listeners) will no longer work from the browser once a HSTS-protected interface has been invoked from the browser.
 
-And also HSTS is made redundant when self-signed certificates are employed (the default certs currently we use for API Manager UI and traffic and API Gateway Manager UI, Analytics and Client Application Registry).
+**NOTE:** HSTS is made redundant when self-signed certificates are employed. By default the following ports use self-signed certificates: API Manager UI(8075), API Manager traffic (8065), API Gateway Manager UI (8090), Analytics (8040) and Client Application Registry (8089).
