@@ -14,7 +14,7 @@ Note that HSTS is enabled for the domain, regardless of any other ports configur
 
 ## Create an HSTS profile
 
-To configure HSTS in API Gateway, API Manager, API Gateway Analytics, and Client Application Registry, you must first create an HSTS profile in Policy Studio.
+To use HSTS, you must first create an HSTS profile in Policy Studio.
 
 1. In Policy Studio, click **Environment Configuration > Libraries > HSTS Profiles**.
 2. Right-click **HSTS Profiles**, and select **Add an HSTS Profile**.
@@ -26,9 +26,9 @@ To configure HSTS in API Gateway, API Manager, API Gateway Analytics, and Client
         * **includeSubDomains**: Specifies this rule applies to all of the site's subdomains as well. Defaults to enabled.
 4. Click **OK**.
 
-## Configure an HSTS profile for SSL interfaces
+## Configure an HSTS profile
 
-The HSTS profile is not configured in SSL interfaces by default. To enable HSTS, perform the following steps.
+The HSTS profile is not configured in SSL interfaces by default. To enable it, perform the following steps.
 
 1. In Policy Studio, create a new project **From existing configuration** in the same directory of the node manager configuration (`apigateway/conf`).
 2. Click **Environment Configuration > Listeners**.
