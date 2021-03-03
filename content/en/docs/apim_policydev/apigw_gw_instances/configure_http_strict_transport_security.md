@@ -10,8 +10,6 @@ HTTP Strict Transport Security (HSTS) is a browser security mechanism, implement
 
 HSTS enforces security on applications because it mitigates attacks such as man-in-the-middle, insecure link referencing, and invalid certificates.
 
-Note that HSTS is enabled for the domain, regardless of any other ports configured on the listeners. Any non-SSL ports that exist in the configuration (listeners) will no longer work from the browser after an HSTS-protected interface has been invoked from the browser.
-
 ## Create an HSTS profile
 
 To use HSTS, you must first create an HSTS profile in Policy Studio.
@@ -47,8 +45,11 @@ To apply the HSTS profile to the node manager, you must copy the project folder 
 To apply the HSTS profile to API Gateway, open API Gateway Manager UI in a browser, and verify that all the responses from the interface contains `Strict-Transport-Security` header with `max-age` and `includeSubDomains`.
 
 {{% alert title="Note" %}}
+ HSTS is enabled for the domain, regardless of any other ports configured on the listeners. Any non-SSL ports that exist in the configuration (listeners) will no longer work from the browser after an HSTS-protected interface has been invoked from the browser.
+
 HSTS is made redundant when self-signed certificates are employed.
 {{% /alert %}}
+
 By default, the following ports use self-signed certificates:
 
 * API Manager UI(8075)
