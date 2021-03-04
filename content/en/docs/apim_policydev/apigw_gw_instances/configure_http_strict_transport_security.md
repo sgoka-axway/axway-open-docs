@@ -26,11 +26,9 @@ To create an HSTS to your domain, you must first add an HSTS profile in Policy S
 
 ## Configure an HSTS profile
 
-The HSTS profile is not configured in SSL interfaces by default. To enable it, in Policy Studio,
+The HSTS profile is not configured in SSL interfaces by default. To enable it, for example, for API Gateway, perform the following steps:
 
-1. Navigate to the **Ports** section of the HTTP service you wish to configure:
-    * For API Gateway: Create a new project from **New Project from an API Gateway instance**, then click **Environment Configuration > Listeners > API Gateway > Default Services > Ports**.
-    * For Node Manager: Create a new project **From existing configuration** and browse the directory of your nodemanager config file (`apigateway/conf/configs.xml`), then click **Environment Configuration > Listeners > Node Manager > Management Services > Ports**.
+1. In Policy Studio, click **Environment Configuration > Listeners > API Gateway > Default Services > Ports**.
 2. Right-click the HTTPS interface you wish to update, and click **Edit**.
 3. Click the **Advanced** tab, and under **HSTS Settings**, select the HSTS profile you wish to use to protect all endpoints serviced by this interface.
 4. Click **OK**.
@@ -38,8 +36,6 @@ The HSTS profile is not configured in SSL interfaces by default. To enable it, i
 ![To enable HSTS profile](/Images/docbook/images/general/hsts5.png)
 
 After the changes have been deployed, all the responses from the interface will contain the `Strict-Transport-Security` header.
-
-To apply the configuration changes done in policy studio for nodemanager, you must copy the config files of your project's folder to `apigateway/conf` folder.
 
 {{% alert title="Note" %}}
 When you enable HSTS, it takes effect for the entire domain regardless of any other ports configured on the listeners. Any non-SSL ports that exist in the configuration (listeners) will no longer work from the browser after an HSTS-protected interface has been invoked from the browser.
