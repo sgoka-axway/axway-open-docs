@@ -11,7 +11,7 @@ HSTS enforces security on applications by mitigating attacks such as man-in-the-
 
 ## Add an HSTS profile
 
-To configure HSTS, you must first add an HSTS profile in Policy Studio.
+To create an HSTS to your domain, you must first add an HSTS profile in Policy Studio.
 
 1. In Policy Studio, click **Environment Configuration > Libraries > HSTS Profiles**.
 2. Right-click **HSTS Profiles**, and select **Add an HSTS Profile**.
@@ -20,33 +20,29 @@ To configure HSTS, you must first add an HSTS profile in Policy Studio.
    * **Name**: Unique name of the HSTS profile. Defaults to HTTP Strict Transport Security.
    * **Enable HSTS**: Specifies whether HSTS processing is enabled for the profile. Defaults to enabled.
    * **HSTS Parameters:**
-
      * **max-age (seconds)**: Specifies the time, in seconds, that the browser should remember that a site is only to be accessed using HTTPS.
-     * **includeSubDomains**: Specifies this rule applies to all of the site's subdomains as well. Defaults to enabled.
+     * **includeSubDomains**: Applies the new profile to all of the site's subdomains. Defaults to enabled.
 4. Click **OK**.
 
 ## Configure an HSTS profile
 
-The HSTS profile is not configured in SSL interfaces by default. To enable it, perform the following steps.
+The HSTS profile is not configured in SSL interfaces by default. To enable it, in Policy Studio,
 
-1. In Policy Studio, create a new project **From existing configuration** and browse the directory of nodemanager config (apigateway/conf/configs.xml)
-2. Click **Environment Configuration > Listeners**.
-3. Select the interface you wish to configure, for example, **Node Manager > Management Services**.
-4. Select **Ports**.
-5. Right-click the HTTPS interface you wish to update, and click **Edit**.
-6. Click the **Advanced** tab, and under **HSTS Settings**, select the HSTS profile you wish to use to protect all endpoints serviced by this interface.
-7. Click **OK**.
+1. Navigate to the **Ports** section of the HTTP service you wish to configure:
+    * For API Gateway: Create a new project from **New Project from an API Gateway instance**, then click **Environment Configuration > Listeners > API Gateway > Default Services > Ports**.
+    * For Node Manager: Create a new project **From existing configuration** and browse the directory of your nodemanager config file (`apigateway/conf/configs.xml`), then click **Environment Configuration > Listeners > Node Manager > Management Services > Ports**.
+2. Right-click the HTTPS interface you wish to update, and click **Edit**.
+3. Click the **Advanced** tab, and under **HSTS Settings**, select the HSTS profile you wish to use to protect all endpoints serviced by this interface.
+4. Click **OK**.
 
 ![To enable HSTS profile](/Images/docbook/images/general/hsts5.png)
 
-**NOTE**: To apply the configuration changes done in policy studio for nodemanager you need to copy the config files of your project's folder to apigateway/conf folder.
+After the changes have been deployed, all the responses from the interface will contain the `Strict-Transport-Security` header.
 
-To enable HSTS profile for other SSL ports under API Gateway listeners, in policy studio, create a project from "**New Project from an API Gateway instance**" and follow the above steps from 2 to 7. Deploy the configuration.
-
-Any changes made to HSTS profile settings needs a deployment to API Gateway. When you open the UI in a browser all the responses from the interface contains “`Strict-Transport-Security`” with max-age and includeSubDomains.
+To apply the configuration changes done in policy studio for nodemanager, you must copy the config files of your project's folder to `apigateway/conf` folder.
 
 {{% alert title="Note" %}}
-When HSTS is enabled, it is for the entire domain regardless of any other ports configured on the listeners. Any non-SSL ports that exist in the configuration (listeners) will no longer work from the browser after an HSTS-protected interface has been invoked from the browser.
+When you enable HSTS, it takes effect for the entire domain regardless of any other ports configured on the listeners. Any non-SSL ports that exist in the configuration (listeners) will no longer work from the browser after an HSTS-protected interface has been invoked from the browser.
 
 HSTS is made redundant when self-signed certificates are employed.
 {{% /alert %}}
