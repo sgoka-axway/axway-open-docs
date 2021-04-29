@@ -1,10 +1,83 @@
 {
 "title": "Security configuration",
-"linkTitle": "Security configuration",
-"weight": 60,
-"date": "2019-11-25",
-"description": "Describes the main configurable security features of API Gateway, API Manager, and API Portal."
+  "linkTitle": "Security configuration",
+  "weight": 60,
+  "date": "2019-11-25",
+  "description": "Describes the main configurable security features of API Gateway, API Manager, and API Portal."
 }
+## Default security response headers
+
+The below are the out of the box security response headers supported in API Gateway, API Manager, API Client Registry and API Analytics.
+
+* HTTP Strict Transport Security (HSTS)
+* Content-Security-Policy
+* X-XSS-Protection
+* X-Content-Type-Options
+* X-Frame-Options
+* Cache-control
+#### HTTP Strict-Transport-Security Response Header
+A Strict-Transport-Security HTTP header is sent with each HTTPS response.
+```
+Syntax: Strict-Transport-Security: max-age=<seconds>[; includeSubDomains]
+```
+
+
+
+The parameter max-age gives the time frame for requirement of HTTPS in seconds and should be chosen quite high, e.g. several months. A value below 7776000 is considered as too low. The flag includeSubDomains defines that the policy applies also for sub domains of the sender of the response.
+
+
+For more information, see [Configure HTTP strict transport security.](/docs/apim_policydev/apigw_gw_instances/configure_http_strict_transport_security/index.html)
+
+#### Content-Security-Policy
+The Content Security Policy (CSP) header sets a policy that instructs the browser to only fetch resources, such as scripts, images, or objects, from the specified locations. A compliant browser will deny loading any resources from locations not listed in the policy. The CSP header reduces an attacker’s ability to inject malicious content and helps to protect a web page from attacks like Cross-Site Scripting (XSS), dynamic code execution, and clickjacking.
+```
+
+
+Syntax: Content-Security-Policy: <directive> <value>; <directive> <value>;...
+```
+
+
+For more information, see [Define a restrictive content security policy.]
+(/docs/apim_installation/apiportal_install/secure_harden_portal/#define-a-restrictive-content-security-policy)
+
+#### X-XSS-Protection Response Header
+This header stops pages from loading when they detect reflected cross-site scripting (XSS) attacks.
+```
+
+
+Syntax: X-XSS-Protection: 1; mode=block
+```
+
+#### No-Sniff Response Header
+This header makes the web application not vulnerable against Cross-Site Scripting (XSS) attacks. The lack of this header causes that certain browsers determine the content type and encoding of the response even when these properties are defined correctly. E.g. the Internet Explorer and Safari treat responses with the content type text/plain as HTML, if they contain HTML tags.
+```
+
+
+Syntax: X-Content-Type-Options: nosniff
+```
+
+#### X-Frame-Options
+This header avoids click-jacking attacks by ensuring that their content is not embedded into other sites. The page cannot be displayed in a frame, regardless of the site attempting to do so. 
+
+This is similar to the 'frame-ancestors  none'  directive in the Content Security policy header.
+```
+
+
+Syntax: X-Frame-Options: DENY
+```
+
+#### No-Caching Response Headers
+
+The response may not be stored in any cache, any stale stored responses are revalidated.
+
+Pragma is for backward compatibility for HTTP/1.0 caches.
+```
+Syntax:
+Cache-control: no-cache, no-store, must-revalidate
+Pragma: no-cache
+```
+
+
 
 ## API Gateway inbound SSL configuration
 
